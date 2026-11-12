@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7f8" />
+  <meta name="description" content="A student identity card replacement and reissue portal demo." />
+  <title>CardDesk — Student ID Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="CardDesk home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>card<span class="brand-light">desk</span></span>
+      </a>
+
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview" data-section="overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#application" data-section="application"><span class="nav-icon">＋</span> New application</a>
+        <a class="nav-link" href="#tracking" data-section="tracking"><span class="nav-icon">◎</span> Track application</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <strong>Need a hand?</strong>
+          <p>Check the required documents before submitting your request.</p>
+          <a href="#requirements">View checklist <span>↗</span></a>
+        </div>
+        <div class="profile">
+          <div class="avatar">SD</div>
+          <div class="profile-copy"><strong>Student Portal</strong><small>Undergraduate</small></div>
+          <span class="profile-dots" aria-hidden="true">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb">Student services <span>/</span> <strong>ID card services</strong></div>
+        <div class="topbar-right"><span class="secure"><i></i> Frontend demo portal</span><div class="top-avatar">SD</div></div>
+      </header>
+
+      <section class="page-wrap" id="overview">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> STUDENT ID SERVICES</div>
+            <h1>Your campus identity,<br class="mobile-break" /> taken care of.</h1>
+            <p class="subtitle">Apply for a replacement card, review your documents and follow every step — all in one place.</p>
+          </div>
+          <div class="header-actions">
+            <button class="button button-quiet" id="howItWorks" type="button">How it works <span>↗</span></button>
+            <a class="button button-primary" href="#application">Start application <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="stats-grid" aria-label="Service overview">
+          <article class="stat-card">
+            <div class="stat-top"><span>STANDARD FEE</span><span class="stat-symbol">₹</span></div>
+            <div class="stat-value">₹500</div>
+            <div class="stat-foot">One-time reissue charge</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>PROCESSING TIME</span><span class="stat-symbol">◷</span></div>
+            <div class="stat-value">5–7 <small>days</small></div>
+            <div class="stat-foot">Urgent 24-hour option available</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>YOUR APPLICATION</span><span class="status-dot" id="statusDot"></span></div>
+            <div class="stat-value stat-status" id="statStatus">Not started</div>
+            <div class="stat-foot" id="statSub">Your progress will appear here</div>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel application-panel" id="application">
+            <div class="panel-heading">
+              <div><div class="section-kicker">01 / APPLICATION</div><h2>Replacement request</h2><p>Tell us a little about your existing student ID.</p></div>
+              <span class="step-tag">STEP 1 OF 3</span>
+            </div>
+
+            <form id="applicationForm" novalidate>
+              <div class="form-grid">
+                <label class="field"><span>Roll number <b>*</b></span><input id="roll" name="roll" placeholder="e.g. 12400123" required minlength="2" maxlength="20" autocomplete="off" /></label>
+                <label class="field"><span>Full name <b>*</b></span><input id="fullName" name="fullName" placeholder="As per university records" required autocomplete="name" /></label>
+                <label class="field"><span>School / branch <b>*</b></span><select id="branch" name="branch" required><option value="">Select your branch</option><option>Computer Science &amp; Engineering</option><option>Information Technology</option><option>Electronics &amp; Communication</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Business Administration</option><option>Other</option></select></label>
+                <label class="field"><span>Blood group <b>*</b></span><select id="blood" name="blood" required><option value="">Select blood group</option><option>A+</option><option>A−</option><option>B+</option><option>B−</option><option>AB+</option><option>AB−</option><option>O+</option><option>O−</option><option>Prefer not to disclose</option></select></label>
+              </div>
+
+              <div class="field reason-field">
+                <span>Reason for reissue <b>*</b></span>
+                <div class="reason-options">
+                  <label class="reason-option"><input type="radio" name="reason" value="Lost" required /><span class="reason-icon">⌕</span><span><strong>Lost</strong><small>Card is missing</small></span></label>
+                  <label class="reason-option"><input type="radio" name="reason" value="Damaged" /><span class="reason-icon">◇</span><span><strong>Damaged</strong><small>Card is broken</small></span></label>
+                  <label class="reason-option"><input type="radio" name="reason" value="Defaced" /><span class="reason-icon">✳</span><span><strong>Defaced</strong><small>Details unreadable</small></span></label>
+                </div>
+              </div>
+
+              <div class="section-divider"></div>
+
+              <div class="panel-subheading" id="requirements">
+                <div><div class="section-kicker">02 / DOCUMENTS</div><h3>Document checklist</h3><p>Confirm the supporting document for your selected reason.</p></div>
+                <span class="required-note">Required to submit</span>
+              </div>
+              <div class="document-list" id="documentList">
+                <label class="document-item" id="policeDocument">
+                  <span class="document-icon">▤</span>
+                  <span class="document-copy"><strong>Police lost-report acknowledgement</strong><small>Required when the original card has been lost.</small></span>
+                  <span class="document-check"><input type="checkbox" id="policeAck" /><i></i></span>
+                </label>
+                <label class="document-item" id="oldCardDocument">
+                  <span class="document-icon">▣</span>
+                  <span class="document-copy"><strong>Old damaged / defaced card</strong><small>Confirm that the old card can be submitted at collection.</small></span>
+                  <span class="document-check"><input type="checkbox" id="oldCardAck" /><i></i></span>
+                </label>
+              </div>
+              <p class="document-hint" id="documentHint">Choose a reason above to see which document confirmation is required.</p>
+
+              <div class="section-divider"></div>
+
+              <div class="panel-subheading fee-heading">
+                <div><div class="section-kicker">03 / PROCESSING</div><h3>Choose your turnaround</h3><p>Select the processing speed that works for you.</p></div>
+              </div>
+              <div class="fee-options">
+                <label class="fee-option selected" id="standardOption" for="speedStandard">
+                  <input type="radio" id="speedStandard" name="speed" value="standard" checked aria-label="Standard reissue, 5 to 7 working days, 500 rupees" />
+                  <span class="fee-radio"></span>
+                  <span class="fee-copy"><strong>Standard reissue</strong><small>Ready in approximately 5–7 working days</small></span>
+                  <strong class="fee-amount">₹500</strong>
+                </label>
+                <label class="fee-option" id="urgentOption" for="speedUrgent">
+                  <input type="radio" id="speedUrgent" name="speed" value="urgent" aria-label="Urgent 24-hour processing, 900 rupees" />
+                  <span class="fee-radio"></span>
+                  <span class="fee-copy"><strong>Urgent · 24 hours</strong><small>Priority processing, subject to verification</small></span>
+                  <strong class="fee-amount">₹900</strong>
+                </label>
+              </div>
+
+              <div class="form-footer">
+                <p><span class="lock-icon">⌑</span> Your details stay in this browser for this demo.</p>
+                <button class="button button-primary submit-button" type="submit">Submit application <span>→</span></button>
+              </div>
+              <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+            </form>
+          </section>
+
+          <aside class="right-column">
+            <section class="panel summary-panel">
+              <div class="panel-heading compact-heading"><div><div class="section-kicker">FEE SUMMARY</div><h2>Estimated total</h2></div><span class="summary-icon">₹</span></div>
+              <div class="summary-amount" id="summaryAmount">₹500</div>
+              <div class="summary-caption" id="summaryCaption">Standard reissue selected</div>
+              <div class="summary-line"><span>Reissue charge</span><strong id="chargeAmount">₹500</strong></div>
+              <div class="summary-line"><span>Processing fee</span><strong>Included</strong></div>
+              <div class="summary-total"><span>Total payable</span><strong id="totalAmount">₹500</strong></div>
+              <p class="summary-note">Illustrative fees for this academic project. Actual university charges may differ.</p>
+            </section>
+
+            <section class="panel info-panel">
+              <div class="info-top"><span class="info-icon">✦</span><span class="info-label">GOOD TO KNOW</span></div>
+              <h3>A smoother campus process.</h3>
+              <p>One request brings the key steps together, reducing unnecessary visits between departments.</p>
+              <div class="info-rule"></div>
+              <div class="info-point"><span>01</span><p>Keep your roll number ready.</p></div>
+              <div class="info-point"><span>02</span><p>Confirm the document relevant to your case.</p></div>
+              <div class="info-point"><span>03</span><p>Save your application ID to track progress.</p></div>
+            </section>
+          </aside>
+        </div>
+
+        <section class="panel tracking-panel" id="tracking">
+          <div class="tracking-heading">
+            <div><div class="section-kicker">APPLICATION TRACKER</div><h2>Every step, in view.</h2><p>Follow your replacement request from submission to collection.</p></div>
+            <div class="tracking-meta" id="trackingMeta"><span class="meta-label">APPLICATION ID</span><strong id="applicationId">Not generated</strong></div>
+          </div>
+          <div class="empty-state" id="emptyTracking"><div class="empty-art"><span>◎</span></div><strong>No active application yet</strong><p>Submit the form above to create an application and start tracking its progress.</p><a class="text-link" href="#application">Create an application <span>→</span></a></div>
+          <div class="tracker-content" id="trackerContent">
+            <div class="pipeline-hint" id="pipelineHint">The stages below show the complete processing journey. Submit an application to activate your personal tracker.</div>
+            <div class="tracker-person hidden" id="trackerPerson"><div class="tracker-avatar" id="trackerInitials">ST</div><div><strong id="trackerName">Student name</strong><small><span id="trackerRoll">Roll number</span> · <span id="trackerReason">Lost</span> card</small></div><span class="current-status" id="currentStatus">Submitted</span></div>
+            <div class="timeline" id="timeline" role="list" aria-label="Application processing stages">
+              <div class="timeline-step pending" role="listitem"><span class="timeline-node">1</span><div><strong>Submitted</strong><small>Application received</small></div></div>
+              <div class="timeline-step pending" role="listitem"><span class="timeline-node">2</span><div><strong>Payment Verified</strong><small>Fee confirmation</small></div></div>
+              <div class="timeline-step pending" role="listitem"><span class="timeline-node">3</span><div><strong>Printing</strong><small>Card is being prepared</small></div></div>
+              <div class="timeline-step pending" role="listitem"><span class="timeline-node">4</span><div><strong>Ready for Collection</strong><small>Collect from the admin office</small></div></div>
+            </div>
+            <div class="tracker-bottom hidden" id="trackerBottom"><div class="tracker-update" id="trackerUpdate">Your application has been submitted successfully.</div><div class="tracker-actions"><button class="button button-quiet button-small" id="resetDemo" type="button">Reset demo</button><button class="button button-primary button-small" id="advanceStatus" type="button">Advance demo status <span>→</span></button></div></div>
+            <div class="demo-disclaimer hidden" id="demoDisclaimer">DEMO CONTROL · Use “Advance demo status” to simulate the administrative stages during your presentation.</div>
+          </div>
+        </section>
+
+        <footer class="footer"><span>© 2026 CardDesk · Student ID Services</span><span>Designed for a simpler campus experience <b>✦</b></span></footer>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="how-dialog" id="howDialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div class="section-kicker">A SIMPLE THREE-STEP FLOW</div>
+    <h2>From request to ready.</h2>
+    <div class="how-step"><span>01</span><div><strong>Submit your details</strong><p>Enter your student information, select a reason and confirm the relevant document.</p></div></div>
+    <div class="how-step"><span>02</span><div><strong>Confirm the fee</strong><p>Choose standard or urgent processing and review the estimated amount.</p></div></div>
+    <div class="how-step"><span>03</span><div><strong>Track your card</strong><p>Use your generated application ID to follow the four processing stages.</p></div></div>
+    <p class="dialog-footnote">This is a frontend-only academic prototype. No real payment or university record is created.</p>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
